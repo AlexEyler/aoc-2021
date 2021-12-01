@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use std::env;
 use std::fs;
 use std::process;
@@ -32,23 +33,44 @@ fn get_depths() -> Vec<i32> {
     return results;
 }
 
-fn p1() {
-    let depths = get_depths();
+fn find_maxima(results: Vec<i32>) {
     let mut n: i32 = 0;
-    for i in 0..depths.len() {
+    for i in 0..results.len() {
         if i == 0 {
-            println!("{} (N/A)", depths[i]);
+            println!("{} (N/A - no previous sum)", results[i]);
             continue;
         }
-        if depths[i] > depths[i - 1] {
-            println!("{} (increased)", depths[i]);
+        if results[i] > results[i - 1] {
+            println!("{} (increased)", results[i]);
             n = &n + 1;
+        } else if results[i] == results[i - 1] {
+            println!("{} (no change)", results[i]);
         } else {
-            println!("{} (decreased)", depths[i]);
+            println!("{} (decrased)", results[i]);
         }
     }
     println!("The number of measurements that are larger than the previous measurement is:");
-    println!("{}", n)
+    println!("{}", n);
 }
 
-fn p2() {}
+fn get_window_depths(depths: Vec<i32>) -> Vec<i32> {
+    let mut results: Vec<i32> = Vec::new();
+    for i in 0..depths.len() {
+        if i + 2 < depths.len() {
+            results.push(depths[i] + depths[i + 1] + depths[i + 2]);
+        }
+    }
+
+    return results;
+}
+
+fn p1() {
+    let depths = get_depths();
+    find_maxima(depths);
+}
+
+fn p2() {
+    let depths = get_depths();
+    let window_depths = get_window_depths(depths);
+    find_maxima(window_depths);
+}
