@@ -8,8 +8,8 @@
             "type": "lldb",
             "request": "launch",
             "name": "Debug",
-            "program": "${workspaceFolder}/day5/target/debug/day5",
-            "args": ["-p", "1"],
+            "program": "${workspaceFolder}/day6/target/debug/day6",
+            "args": ["-p", "2", "-d", "80"],
             "cwd": "${workspaceFolder}"
         }
     ]
