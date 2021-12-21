@@ -197,7 +197,7 @@ fn p2(lines: &Vec<String>) {
 }
 
 fn main() {
-    let matches = App::new("day7")
+    let matches = App::new("day9")
         .version("1.0")
         .author("Alex Eyler <alex.eyler@outlook.com>")
         .about("Advent of code")
